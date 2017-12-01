@@ -6,6 +6,10 @@
 
 #idea folder
 .idea/*
+.target/*
+.idea
+.target
+*.iml
 
 # BlueJ files
 *.ctxt
