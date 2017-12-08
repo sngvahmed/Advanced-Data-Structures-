@@ -4,22 +4,23 @@ package BinarySearchTree;/*
 * different between postorder , preorder and inorder
 * */
 
+import static sun.swing.MenuItemLayoutHelper.max;
+
 public class TreeTraversal {
-    private Node root;
-    private StringBuilder res = new StringBuilder("");
 
     class Node {
-        public Node left;
-        public Node right;
-        public Integer value;
+        Node left, right;
+        int value;
 
-        Node(Integer value) {
+        Node(int value) {
             this.value = value;
         }
     }
 
-    TreeTraversal() {
-        root = new Node(1);
+    private StringBuilder res = new StringBuilder("");
+
+    public Node generateRoot() {
+        Node root = new Node(1);
         Node node4 = new Node(4);
         Node node5 = new Node(5);
         Node node2 = new Node(2);
@@ -29,12 +30,14 @@ public class TreeTraversal {
         node2.right = node5;
         root.left = node2;
         root.right = node3;
+
+        return root;
     }
 
 
-    /*
-    * Inorder (Left, Root, Right)
-    * */
+    TreeTraversal() {
+    }
+
     private void inorder(Node node) {
         if (node == null) return;
         inorder(node.left);
@@ -42,9 +45,6 @@ public class TreeTraversal {
         inorder(node.right);
     }
 
-    /*
-    * Preorder (Root, Left, Right)
-    * */
     private void preorder(Node node) {
         if (node == null) return;
 
@@ -53,9 +53,6 @@ public class TreeTraversal {
         preorder(node.right);
     }
 
-    /*
-    * Postorder (Left, Right, Root)
-    * */
     private void postOrder(Node node) {
         if (node == null) return;
 
@@ -68,26 +65,31 @@ public class TreeTraversal {
         res.append(node.value);
     }
 
-    public String testInorder() {
-        reset();
+    /*
+    * Inorder (Left, Root, Right)
+    * */
+    public String testInorder(Node root) {
+        res = new StringBuilder("");
         inorder(root);
         return res.toString();
     }
 
-    public String testPreorder() {
-        reset();
+    /*
+    * Preorder (Root, Left, Right)
+    * */
+    public String testPreorder(Node root) {
+        res = new StringBuilder("");
         preorder(root);
         return res.toString();
     }
 
-    public String testPostOrder() {
-        reset();
+    /*
+    * Postorder (Left, Right, Root)
+    * */
+    public String testPostOrder(Node root) {
+        res = new StringBuilder("");
         postOrder(root);
         return res.toString();
     }
 
-
-    private void reset() {
-        res.setLength(0);
-    }
 }
